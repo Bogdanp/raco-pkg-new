@@ -4,13 +4,12 @@ jobs:
   build:
     name: "Build on Racket '${{ matrix.racket-version }}' (${{ matrix.racket-variant }})"
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental }}
+    continue-on-error: ${{ matrix.experimental || false }}
     strategy:
       fail-fast: false
       matrix:
         racket-version: ["stable", "current"]
         racket-variant: ["BC", "CS"]
-        experimental: [false]
         include:
           - racket-version: current
             experimental: true
